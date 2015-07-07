@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Homemade Arduino Controlled Servo - Peter Wallhead</title>
+	<meta name="description" content="Even though one can easily buy hobby servos online, I thought I'd have a go at making, and programming, one with some spare parts I had laying around to see how they tick." />
+	<meta property="og:site_name" content="Peter Wallhead" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="http://blog.peterwallhead.com/homemade-arduino-controlled-servo.html" />
+	<meta property="og:title" content="Homemade Arduino Controlled Servo" />
+	<meta property="og:description" content="Even though one can easily buy hobby servos online, I thought I'd have a go at making, and programming, one with some spare parts I had laying around to see how they tick." />
+	<link rel="stylesheet" href="/assets/css/styles.css?v=201527062240">
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-1617022-17', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+</head>
+
+<body>
+	<div id="site-head">
+        <div id="blog-title"><a href="http://blog.peterwallhead.com">Peter Wallhead</a></div>
+        <div id="blog-subtitle">Web developing. Robot building. Real coding.</div>
+    </div>
+	<div id="primary" class="content-area">
+		<div class="post">
+			<div class="post-header">
+				<h1 class="post-title">Homemade Arduino Controlled Servo</h1>
+				<div class="post-meta"><time datetime="2015-06-27">27 JUNE 2015</time></div>
+			</div>
+			<div class="post-content">
+				<p>Even though one can easily buy hobby servos online, I thought I'd have a go at making, and programming, one with some spare parts I had laying around to see how they tick.</p>
+				<p>In its simplest form a servo is an electric motor with an encoder or potentiometer attached to the motor's shaft to measure its rotational angle. A microcontroller is used to to control the rotation speed and direction of the motor's shaft until its position matches a predefined angle as measured by the potentiometer.</p>
+				<h2 id="parts-list">Parts list</h2>
+				<ul>
+				<li>LEGO (great for quick prototyping without screws or glue)</li>
+				<li>A 5000Ohm potentiometer </li>
+				<li>An old LEGO Mindstorms electric motor and gears</li>
+				<li>An Arduino Uno R3 with 1 Amp motor shield (any Arduino compatible board will work)</li>
+				</ul>
+				<h2 id="the-rig">The rig</h2>
+				<p>As shown in the pictures below building the rig was considerable easy, but it's not particularly strong or precise.</p>
+				<div class="gallery">
+				<div class="three-wide"><img src="/uploads/2015/06/servo-full.jpg" /></div>
+				<div class="three-wide middle"><img src="/uploads/2015/06/servo-closeup.jpg" /></div>
+				<div class="three-wide"><img src="/uploads/2015/06/servo-top.jpg" /></div>
+				</div>
+				<h2 id="programming">Programming</h2>
+				<p>The Arduino code is straightforward, it follows these steps:</p>
+				<ol>
+				<li>Sets a required angle that needs to be reached by the motor.</li>
+				<li>Measures the potentiometer's current angle and if it's not the same as required angle turns the motor forward or backward based on whether the current angle is below or above the required angle.</li>
+				<li>When the required angle is reached it stops the motor.</li>
+				</ol>
+				<div class="code">
+				<pre>/*
+  The circuit:
+  * Potentiometer attached to analog input 0
+  * center pin of the potentiometer to the analog pin
+  * one side pin (either one) to ground
+  * the other side pin to +5V
+  * Motor attached to motor 1 connector on shield
+
+  Created by Peter Wallhead
+ 
+  This example code is in the public domain.
+ 
+*/
+
+//Assign motor shield pins that start and stop the motor.
+int PWM1 = 5;
+int PWM2 = 6;
+
+//Assign motor shield pins that dictate motor direction.
+int DIR1 = 4;
+int DIR2 = 7;
+
+//Set motor rotation speed (max: 255)
+int rotationSpeed = 255;
+
+int rotorPin = A0;            // select the input pin for the potentiometer
+int controlPin = A1;          // select the input pin for the potentiometer
+int rotorValue = 0;           // variable to store the value coming from the potentiometer
+int rotationDegrees = 0;      // defaulted here, but is created by mapping rotorValue to a value between 0-270
+int requiredPosition = 135;   // initial position the motor should turn to
+
+void setup() { 
+  Serial.begin(9600);
+}
+
+void loop() {
+  // read the value from the potentiometer
+  rotorValue = analogRead(rotorPin);   
+  rotationDegrees = map(rotorValue, 0, 1023, 0, 270);   
+  Serial.print(requiredPosition);
+  Serial.print("\t ");
+  Serial.println(rotationDegrees);
+  
+  if(rotationDegrees != requiredPosition) {
+    if(rotationDegrees > requiredPosition) {
+      digitalWrite(DIR1, LOW);
+      analogWrite(PWM1, rotationSpeed);
+    }
+    
+    if(rotationDegrees < requiredPosition) {
+      digitalWrite(DIR1, HIGH);
+      analogWrite(PWM1, rotationSpeed);
+    }
+  } else {    
+    analogWrite(PWM1, 0);
+     
+  }
+  
+  // read value from pot 20 times per second
+  delay(50);   
+                  
+}
+</pre>
+				</div>
+				<h2 id="problems-encountered">Problems encountered</h2>
+				<ul>
+				<li>The motor I chose to work with is not designed to work at slow speed and so getting it to turn to, and stop in, a precise position was very hard.</li>
+				<li>The problem caused by the motor's high speed was that it kept overshooting the mark, turning backwards too far, and then turning forward too far again. I did try increasing the speed of the Arduino loop to counter this but it still caused the the motor to rapidly switch directions (hunting) and never stop at the exact required angle.</li>
+				<li>Because the rig was quickly assembled it allowed the potentiometer to shift in its mounting which made measuring the shaft's rotation harder and also caused the rod connected to the gears to jam in the housing on more than one occasion.</li>
+				</ul>
+				<h2 id="possible-improvements-and-future-work">Possible improvements and future work</h2>
+				<ul>
+				<li>Obviously the simplest solution would be to buy a real servo, but that would defeat the purpose ;)</li>
+				<li>Use a slower speed motor or a slow speed gearmotor so that the shaft angle could be read more easily by the potentiometer and prevent the motor of overshooting the mark.</li>
+				<li>Build a sturdier rig to hold the components which will assist in more accurate angle readings.</li>
+				</ul>
+				<div class="code">This is the first of many Arduino projects I'll be blogging about so stay tuned and feel free to try out some of my code from my <a href="https://github.com/peterwallhead/arduino">GitHub repo</a>.</div>	
+			</div>
+		</div>
+
+	</div>
+	<div id="footer">
+		<p>&copy; 2015 <a href="/">Peter Wallhead</a> | <a href="http://blog.peterwallhead.com/rss.xml">RSS feed</a> | <a href="https://twitter.com/peterwallhead">Twitter</a> | <a href="https://github.com/peterwallhead">GitHub</a> | <a href="http://au.linkedin.com/in/peterwallhead">LinkedIn</a></p>
+	</div>
+</body>
+</html>

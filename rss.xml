@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Peter Wallhead</title>
+  <link>http://blog.peterwallhead.com</link>
+  <description>Web developing. Robot building. Real coding.</description>
+  <atom:link href="http://blog.peterwallhead.com/rss.xml" rel="self" type="application/rss+xml" />
+  <item>
+      <title>Simple Ultrasonic Obstacle Avoidance</title>
+      <link>http://blog.peterwallhead.com/simple-ultrasonic-obstacle-avoidance.html</link>
+      <guid isPermaLink="true">http://blog.peterwallhead.com/simple-ultrasonic-obstacle-avoidance.html</guid>
+      <description>Inspired by an article by John Boxall for Little Bird Electronics I recently bought myself a Parallax Ping))) Ultrasonic Distance Sensor to try out. This great little sensor can measure distances between ~2cm and ~3m in length.</description>
+      <pubDate>Sun, 5 Jul 2015 21:53:11 +1000</pubDate>
+  </item>
+  <item>
+      <title>Homemade Arduino Controlled Servo</title>
+      <link>http://blog.peterwallhead.com/homemade-arduino-controlled-servo.html</link>
+      <guid isPermaLink="true">http://blog.peterwallhead.com/homemade-arduino-controlled-servo.html</guid>
+      <description>Even though one can easily buy hobby servos online, I thought I'd have a go at making, and programming, one with some spare parts I had laying around to see how they tick.</description>
+      <pubDate>Sat, 27 Jun 2015 13:07:08 +1000</pubDate>
+  </item>
+</channel>
+</rss>

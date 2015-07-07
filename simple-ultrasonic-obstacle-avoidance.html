@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Simple Ultrasonic Obstacle Avoidance - Peter Wallhead</title>
+	<meta name="description" content="Inspired by an article by John Boxall for Little Bird Electronics I recently bought myself a Parallax Ping))) Ultrasonic Distance Sensor to try out. This great little sensor can measure distances between ~2cm and ~3m in length." />
+	<meta property="og:site_name" content="Peter Wallhead" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="simple-ultrasonic-obstacle-avoidance.html" />
+	<meta property="og:title" content="Simple Ultrasonic Obstacle Avoidance" />
+	<meta property="og:description" content="Inspired by an article by John Boxall for Little Bird Electronics I recently bought myself a Parallax Ping))) Ultrasonic Distance Sensor to try out. This great little sensor can measure distances between ~2cm and ~3m in length." />
+	<link rel="stylesheet" href="/assets/css/styles.css?v=201507052140">
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-1617022-17', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+</head>
+
+<body>
+	<div id="site-head">
+        <div id="blog-title"><a href="http://blog.peterwallhead.com">Peter Wallhead</a></div>
+        <div id="blog-subtitle">Web developing. Robot building. Real coding.</div>
+    </div>
+	<div id="primary" class="content-area">
+		<div class="post">
+			<div class="post-header">
+				<h1 class="post-title">Simple Ultrasonic Obstacle Avoidance</h1>
+				<div class="post-meta"><time datetime="2015-07-05">05 JULY 2015</time></div>
+			</div>
+			<div class="post-content">
+				<p>Inspired by an article by <a href="http://littlebirdelectronics.com.au/blogs/news/4724922-tutorial-parallax-ping-ultrasonic-sensor" target="_blank">John Boxall for Little Bird Electronics</a> I recently bought myself a Parallax Ping))) Ultrasonic Distance Sensor to try out. This great little sensor can measure distances between ~2cm and ~3m in length.</p>
+				<p>Having already purchased a motor base previously I decided to have a go at making a basic roving platform that could avoid obstacles in its path.</p>
+				<h2 id="parts-list">Parts list</h2>
+				<ul>
+				<li>A Parallax Ping))) Ultrasonic Distance Sensor (<a href="http://littlebirdelectronics.com.au/products/2wd-miniq-robot-chassis" target="_blank">source</a>)</li>
+				<li>A 2WD miniQ Robot Chassis (<a href="http://littlebirdelectronics.com.au/products/parallax-ping-ultrasonic-sensor-28015" target="_blank">source</a>)</li>
+				<li>An Arduino Uno R3 with 1 Amp motor shield (any Arduino compatible board will work)</li>
+				<li>Spare switchable 6/12V battery case</li>
+				<li>Assorted spaces, screws and wires</li> 
+				</ul>
+				<h2 id="the-rig">The rig</h2>
+				<div class="gallery">
+				<div class="three-wide"><img src="/uploads/2015/07/ultrasonic-platform-full.jpg" /></div>
+				<div class="three-wide middle"><img src="/uploads/2015/07/ultrasonic-platform-closeup.jpg" /></div>
+				<div class="three-wide"><img src="/uploads/2015/07/ultrasonic-platform-top.jpg" /></div>
+				</div>
+				<h2>Bonus video</h2>
+				<div class="video-wrapper">
+					<iframe width="560" height="349" src="https://www.youtube.com/embed/saB2uzdXTQg" frameborder="0" allowfullscreen></iframe>
+				</div>
+				<h2 id="programming">Programming</h2>
+				<p>The Arduino code makes the robot follow these steps:</p>
+				<ol>
+				<li>Drive forward until an obstacle is detected less than 30cm away from the Ping))) sensor.</li>
+				<li>Drive backward for a set time and then turn left a small amount.</li>
+				<li>Continue driving forward again.</li>
+				</ol>
+				<div class="code">
+				<pre>
+/*
+  Parallax Ping))) ultrasonic sensor code from tronixstuff.wordpress.com - CC by-sa-nc
+  http://littlebirdelectronics.com.au/blogs/news/4724922-tutorial-parallax-ping-ultrasonic-sensor
+  Connect Ping))) signal pin to Arduino digital 8
+
+  Motor shield control functions added by Peter Wallhead.
+
+  This example code is in the public domain.
+
+*/
+
+int signal=8;
+int distance;
+unsigned long pulseduration=0;
+
+// Assign motor shield pins that start and stop the motor.
+int PWM1 = 5;
+int PWM2 = 6;
+
+// Assign motor shield pins that dictate motor direction.
+int DIR1 = 4;
+int DIR2 = 7;
+
+// Set default motor speed.
+int SPEED = 130;
+
+void setup()
+{
+  pinMode(signal, OUTPUT);
+  Serial.begin(9600);
+  
+  // Set pin modes to output for all those used by the motor shield.
+  int i;
+  for(i=4; i<=7; i++) {
+      pinMode(i, OUTPUT);
+  }
+  
+}
+
+void measureDistance()
+{
+  // Set pin as output so we can send a pulse.
+  pinMode(signal, OUTPUT);
+
+  // Set output to LOW.
+  digitalWrite(signal, LOW);
+  delayMicroseconds(5);
+  
+  // Now send the 5uS pulse out to activate Ping)))
+  digitalWrite(signal, HIGH);
+  delayMicroseconds(5);
+  digitalWrite(signal, LOW);
+  
+  // Now we need to change the digital pin 
+  // to input to read the incoming pulse.
+  pinMode(signal, INPUT);
+  
+  // Finally, measure the length of the incoming pulse.
+  pulseduration=pulseIn(signal, HIGH);
+}
+
+void loop()
+{
+  // Get the raw measurement data from Ping)))
+  measureDistance();
+  
+  // Divide the pulse length by half.
+  pulseduration=pulseduration/2; 
+  
+  // Now convert to centimetres. We're metric here people...
+  distance = int(pulseduration/29);
+  
+  // Display on serial monitor (not required, but handy for calibration).
+  Serial.print("Distance - ");
+  Serial.print(distance);
+  Serial.println(" cm");  
+  
+  // Measure distance in front of sensor to nearest object
+  // while driving forward in a straight line.
+  if(distance > 30) {
+    forward(100);
+  } else { // If distance is less than 30cm then reverse up and turn away.
+    backward(500);
+    left(180);
+  }
+  
+  delay(50); 
+}
+
+void forward(int di) {
+  analogWrite(PWM1,SPEED);
+  analogWrite(PWM2, SPEED);
+  
+  digitalWrite(DIR1, HIGH);
+  digitalWrite(DIR2, HIGH);
+  delay(di);
+}
+
+void backward(int di) {
+  analogWrite(PWM1,SPEED);
+  analogWrite(PWM2, SPEED);
+  
+  digitalWrite(DIR1, LOW);
+  digitalWrite(DIR2, LOW);
+  delay(di);
+}
+
+void left(int de) {
+  int turn_length;
+  turn_length = de / 2;
+  
+  analogWrite(PWM1,SPEED);
+  analogWrite(PWM2,SPEED);
+  
+  digitalWrite(DIR1, HIGH);
+  digitalWrite(DIR2, LOW);
+  delay(turn_length);
+}
+
+void right(int de) {
+  int turn_length;
+  turn_length = de / 2;
+  
+  analogWrite(PWM1,SPEED);
+  analogWrite(PWM2, SPEED);
+  
+  digitalWrite(DIR1, LOW);
+  digitalWrite(DIR2, HIGH);
+  delay(turn_length);
+}
+
+void pause(int ti) {
+  analogWrite(PWM1, 0);
+  analogWrite(PWM2, 0);
+  
+  digitalWrite(DIR1, HIGH);
+  digitalWrite(DIR2, HIGH);
+  delay(ti);
+}
+</pre>
+				</div>
+				<div class="code">This is one of many Arduino projects I'll be blogging about so stay tuned and feel free to try out some of my code from my <a href="https://github.com/peterwallhead/arduino">GitHub repo</a>.</div>	
+			</div>
+		</div>
+
+	</div>
+	<div id="footer">
+		<p>&copy; 2015 <a href="/">Peter Wallhead</a> | <a href="http://blog.peterwallhead.com/rss.xml">RSS feed</a> | <a href="https://twitter.com/peterwallhead">Twitter</a> | <a href="https://github.com/peterwallhead">GitHub</a> | <a href="http://au.linkedin.com/in/peterwallhead">LinkedIn</a></p>
+	</div>
+</body>
+</html>
