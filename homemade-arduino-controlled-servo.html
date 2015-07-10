@@ -11,6 +11,9 @@
 	<meta property="og:title" content="Homemade Arduino Controlled Servo" />
 	<meta property="og:description" content="Even though one can easily buy hobby servos online, I thought I'd have a go at making, and programming, one with some spare parts I had laying around to see how they tick." />
 	<link rel="stylesheet" href="/assets/css/styles.css?v=201527062240">
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.6/styles/default.min.css">
+	<script src="//cdn.jsdelivr.net/highlight.js/8.6/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -59,7 +62,7 @@
 				<li>When the required angle is reached it stops the motor.</li>
 				</ol>
 				<div class="code">
-				<pre>/*
+				<pre><code>/*
   The circuit:
   * Potentiometer attached to analog input 0
   * center pin of the potentiometer to the analog pin
@@ -120,8 +123,7 @@ void loop() {
   // read value from pot 20 times per second
   delay(50);   
                   
-}
-</pre>
+}</code></pre>
 				</div>
 				<h2 id="problems-encountered">Problems encountered</h2>
 				<ul>
