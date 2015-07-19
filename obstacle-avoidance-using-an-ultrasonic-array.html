@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Obstacle Avoidance Using An Ultrasonic Array - Peter Wallhead</title>
+	<meta name="description" content="Building on from my work in my last post, I purchased another 2 ultrasonic distance sensors and added some additional logic to my existing code to make it easier for the robot to avoid obstacles in its path." />
+	<meta property="og:site_name" content="Peter Wallhead" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="obstacle-avoidance-using-an-ultrasonic-array.html" />
+	<meta property="og:title" content="Obstacle Avoidance Using An Ultrasonic Array" />
+	<meta property="og:description" content="Building on from my work in my last post, I purchased another 2 ultrasonic distance sensors and added some additional logic to my existing code to make it easier for the robot to avoid obstacles in its path." />
+	<link rel="stylesheet" href="/assets/css/styles.css?v=201507052140">
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.6/styles/default.min.css">
+	<script src="//cdn.jsdelivr.net/highlight.js/8.6/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-1617022-17', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+</head>
+
+<body>
+	<div id="site-head">
+        <div id="blog-title"><a href="http://blog.peterwallhead.com">Peter Wallhead</a></div>
+        <div id="blog-subtitle">Web developing. Robot building. Real coding.</div>
+    </div>
+	<div id="primary" class="content-area">
+		<div class="post">
+			<div class="post-header">
+				<h1 class="post-title">Obstacle Avoidance Using An Ultrasonic Array</h1>
+				<div class="post-meta"><time datetime="2015-07-20">20 JULY 2015</time></div>
+			</div>
+			<div class="post-content">
+				<p>Building on from my work in <a href="http://blog.peterwallhead.com/simple-ultrasonic-obstacle-avoidance.html">my last post</a>, I purchased another 2 ultrasonic distance sensors and added some additional logic to my existing code to make it easier for the robot to avoid obstacles in its path.</p>
+
+				<p>The new program allows the robot to act in 2 different modes depending on the direction the obstacle is in. I've called these modes Passive Avoidance and Active Avoidance.</p>
+
+				<p>While in Passive Avoidance mode the robot simply drives forwards and scans its environment for obstacles. If it encounters an obstacle within 30cm of its left or right sensor it turns slightly away from the obstacle before continuing forwards again.</p>
+
+				<p>If the robot detects an obstacle within 30cm of its front sensor then it pauses and switches to Active Avoidance mode, measures the distance to the nearest object on its left and right, and then turns in the direction where the nearest object is furthest away.</p>
+
+				<p>These 2 modes work perfectly as long as the robot doesn't drive itself directly into the center of a 90 degree corner. If it does then it will become problematic because both the left and right sensor will detect the same distance value and could cause the robot to get stuck. During testing the robot always managed to wiggle itself out of a corner, but a long term fix could be to include an additional function to force the robot to back up and turn a random amount/in a random direction before continuing.</p>
+
+				<div class="gallery">
+					<div class="three-wide"><img src="/uploads/2015/07/ultrasonic-array-left.jpg" /></div>
+					<div class="three-wide middle"><img src="/uploads/2015/07/ultrasonic-array-front.jpg" /></div>
+					<div class="three-wide"><img src="/uploads/2015/07/ultrasonic-array-right.jpg" /></div>
+				</div>
+
+				<p>You'll note from the pictures above that I've added 2 new switches to the robot. The one on the robot's right rear is the main power switch for its battery box, while the switch on the robot's left side, when wired in, will act as a program interrupt (using a while loop) to prevent the motors from spinning while the robot is being programmed.</p>
+
+				<p><em>You can find the <a href="https://github.com/peterwallhead/arduino/tree/master/ultrasonic_array_obstacle_avoidance">Arduino code</a> for this version of the robot on GitHub, along with some other sample code from my previous work.</em></p>
+			</div>
+		</div>
+
+	</div>
+	<div id="footer">
+		<p>&copy; 2015 <a href="/">Peter Wallhead</a> | <a href="http://blog.peterwallhead.com/rss.xml">RSS feed</a> | <a href="https://twitter.com/peterwallhead">Twitter</a> | <a href="https://github.com/peterwallhead">GitHub</a> | <a href="http://au.linkedin.com/in/peterwallhead">LinkedIn</a></p>
+	</div>
+</body>
+</html>

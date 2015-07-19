@@ -6,6 +6,13 @@
   <description>Web developing. Robot building. Real coding.</description>
   <atom:link href="http://blog.peterwallhead.com/rss.xml" rel="self" type="application/rss+xml" />
   <item>
+      <title>Obstacle Avoidance Using An Ultrasonic Array</title>
+      <link>http://blog.peterwallhead.com/obstacle-avoidance-using-an-ultrasonic-array.html</link>
+      <guid isPermaLink="true">http://blog.peterwallhead.com/obstacle-avoidance-using-an-ultrasonic-array.html</guid>
+      <description>Building on from my work in my last post, I purchased another 2 ultrasonic distance sensors and added some additional logic to my existing code to make it easier for the robot to avoid obstacles in its path.</description>
+      <pubDate>Mon, 20 Jul 2015 06:25:11 +1000</pubDate>
+  </item>
+  <item>
       <title>Simple Ultrasonic Obstacle Avoidance</title>
       <link>http://blog.peterwallhead.com/simple-ultrasonic-obstacle-avoidance.html</link>
       <guid isPermaLink="true">http://blog.peterwallhead.com/simple-ultrasonic-obstacle-avoidance.html</guid>
