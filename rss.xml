@@ -6,6 +6,13 @@
   <description>Web developing. Robot building. Real coding.</description>
   <atom:link href="http://blog.peterwallhead.com/rss.xml" rel="self" type="application/rss+xml" />
   <item>
+      <title>Meet Bill And Ben</title>
+      <link>http://blog.peterwallhead.com/meet-bill-ben.html</link>
+      <guid isPermaLink="true">http://blog.peterwallhead.com/meet-bill-ben.html</guid>
+      <description>I've recently put together these almost identical twin robots to test some community behaviour programs, such as follow the leader. Each robot is controlled by an Arduino Uno R3 board with a 1 Amp motor shield and powered by a 6V battery pack.</description>
+      <pubDate>Fri, 31 Jul 2015 21:28:17 +1000</pubDate>
+  </item>
+  <item>
       <title>Obstacle Avoidance Using An Ultrasonic Array</title>
       <link>http://blog.peterwallhead.com/obstacle-avoidance-using-an-ultrasonic-array.html</link>
       <guid isPermaLink="true">http://blog.peterwallhead.com/obstacle-avoidance-using-an-ultrasonic-array.html</guid>
