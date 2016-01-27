@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Human-robot Interaction: Ultrasonic Sensor Controlled Robotic Arm - Peter Wallhead</title>
+	<meta name="description" content="The goal of this project was to demonstrate that by mounting the 4 Ping sensors to the gripper of the arm its motors could be controlled to direct the arm towards the closest target object." />
+	<meta property="og:site_name" content="Peter Wallhead" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="http://blog.peterwallhead.com/human-robot-interaction-ultrasonic-sensor-controlled-robotic-arm.html" />
+	<meta property="og:title" content="Human-robot Interaction Ultrasonic Sensor Controlled Robotic Arm" />
+	<meta property="og:description" content="The goal of this project was to demonstrate that by mounting the 4 Ping sensors to the gripper of the arm its motors could be controlled to direct the arm towards the closest target object." />
+	<link rel="stylesheet" href="/assets/css/styles.css?v=201507302128">
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.6/styles/default.min.css">
+	<script src="//cdn.jsdelivr.net/highlight.js/8.6/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-1617022-17', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+</head>
+
+<body>
+	<div id="site-head">
+        <div id="blog-title"><a href="http://blog.peterwallhead.com">Peter Wallhead</a></div>
+        <div id="blog-subtitle">Web developing. Robot building. Real coding.</div>
+    </div>
+	<div id="primary" class="content-area">
+		<div class="post">
+			<div class="post-header">
+				<h1 class="post-title">Human-robot Interaction: Ultrasonic Sensor Controlled Robotic Arm</h1>
+				<div class="post-meta"><time datetime="2016-01-27">27 JANUARY 2016</time></div>
+			</div>
+			<div class="post-content">
+				<h2>Parts Overview</h2>
+
+                <ul>
+                    <li>An off the shelf <a href="http://www.robotshop.com/en/owi-535-robotic-arm-edge.html">Robotic Arm</a></li>
+                    <li>4 <a href="http://littlebirdelectronics.com.au/products/parallax-ping-ultrasonic-sensor-28015">Ultrasonic Ping Sensors</a></li>
+                    <li><a href="http://littlebirdelectronics.com.au/products/arduino-uno-r3-2">Arduino Uno Board</a></li>
+                    <li><a href="http://littlebirdelectronics.com.au/products/4-channels-5v-relay-module">4 Channel 5V Relay Module</a></li>
+                    <li>Demo <a href="https://github.com/peterwallhead/arduino/blob/master/ultrasonic_controlled_robot_arm/ultrasonic_controlled_robot_arm.ino">Arduino Code</a></li>
+                </ul>
+
+                <p>I've had a robot arm sitting around for a few years and kept telling myself I'd dust it off and use it for a cool project, but never got to it until now.</p>
+
+                <p>The goal of this project was to demonstrate that by mounting the 4 Ping sensors to the gripper of the arm its motors could be controlled to direct the arm towards the closest target object (within 15cm in this case). Target objects could include one's hand or any flat surface measuring a minimum of 5cm by 5cm.</p>
+
+                <div class="gallery">
+                    <div class="single"><blockquote class="instagram-media" data-instgrm-version="6" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:37.5% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAGFBMVEUiIiI9PT0eHh4gIB4hIBkcHBwcHBwcHBydr+JQAAAACHRSTlMABA4YHyQsM5jtaMwAAADfSURBVDjL7ZVBEgMhCAQBAf//42xcNbpAqakcM0ftUmFAAIBE81IqBJdS3lS6zs3bIpB9WED3YYXFPmHRfT8sgyrCP1x8uEUxLMzNWElFOYCV6mHWWwMzdPEKHlhLw7NWJqkHc4uIZphavDzA2JPzUDsBZziNae2S6owH8xPmX8G7zzgKEOPUoYHvGz1TBCxMkd3kwNVbU0gKHkx+iZILf77IofhrY1nYFnB/lQPb79drWOyJVa/DAvg9B/rLB4cC+Nqgdz/TvBbBnr6GBReqn/nRmDgaQEej7WhonozjF+Y2I/fZou/qAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/p/BBCAuJqqEEG/" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A photo posted by Peter Wallhead (@peterwallhead)</a> on <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2016-01-27T05:52:25+00:00">Jan 26, 2016 at 9:52pm PST</time></p></div></blockquote>
+<script async defer src="//platform.instagram.com/en_US/embeds.js"></script></div>
+                </div>
+
+                <p>So the robot arm could be returned to its unmodified state quickly, I've wired a relay module into the arm's controller to utilise the existing switchers. This means that each switch requires 2 relays, 1 for each direction that the motor can turn.</p>
+
+                <p>The Arduino receives signals from the Ping sensors, calculates the distance to the nearest object from each sensor and sends a signal back the appropriate relay to control the arm's motors.</p>
+
+                <div class="gallery">
+                    <div class="single"><blockquote class="instagram-media" data-instgrm-version="6" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:28.125% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAGFBMVEUiIiI9PT0eHh4gIB4hIBkcHBwcHBwcHBydr+JQAAAACHRSTlMABA4YHyQsM5jtaMwAAADfSURBVDjL7ZVBEgMhCAQBAf//42xcNbpAqakcM0ftUmFAAIBE81IqBJdS3lS6zs3bIpB9WED3YYXFPmHRfT8sgyrCP1x8uEUxLMzNWElFOYCV6mHWWwMzdPEKHlhLw7NWJqkHc4uIZphavDzA2JPzUDsBZziNae2S6owH8xPmX8G7zzgKEOPUoYHvGz1TBCxMkd3kwNVbU0gKHkx+iZILf77IofhrY1nYFnB/lQPb79drWOyJVa/DAvg9B/rLB4cC+Nqgdz/TvBbBnr6GBReqn/nRmDgaQEej7WhonozjF+Y2I/fZou/qAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/p/BBB8QusKEPA/" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A video posted by Peter Wallhead (@peterwallhead)</a> on <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2016-01-27T05:13:27+00:00">Jan 26, 2016 at 9:13pm PST</time></p></div></blockquote></div>
+                </div>
+
+                <p>Currently the arm has 2 degrees of motion; up and down, equivalent to a human's shoulder joint, and left and right, equivalent to twisting one's waist. As demonstrated in the video above, the arm does move in the direction of the target object, but because it relies on relays to control the arm's motors there's a delay (and subsequent overshoot in some cases) between detection and reaction.</p>
+
+                <p>To increase the speed of the feedback loop between the controller and the arm, the Arduino, via a motor control module, should be directly controlling the direction and speed of the motors. This would smooth the arm's motion and improve the interaction between the human holding the target object and the robot.</p>
+
+                <p>While this simple demonstration meets the project's goal for now, I will explore further enhancements, such as direct motor control, in the future.</p>
+				
+			</div>
+		</div>
+
+	</div>
+	<div id="footer">
+		<p>&copy; 2016 <a href="/">Peter Wallhead</a> | <a href="http://blog.peterwallhead.com/rss.xml">RSS feed</a> | <a href="https://twitter.com/peterwallhead">Twitter</a> | <a href="https://github.com/peterwallhead">GitHub</a> | <a href="http://au.linkedin.com/in/peterwallhead">LinkedIn</a></p>
+	</div>
+</body>
+</html>

@@ -6,6 +6,13 @@
   <description>Web developing. Robot building. Real coding.</description>
   <atom:link href="http://blog.peterwallhead.com/rss.xml" rel="self" type="application/rss+xml" />
   <item>
+    <title>Human-robot Interaction: Ultrasonic Sensor Controlled Robotic Arm</title>
+    <link>http://blog.peterwallhead.com/human-robot-interaction-ultrasonic-sensor-controlled-robotic-arm.html</link>
+    <guid isPermaLink="true">http://blog.peterwallhead.com/human-robot-interaction-ultrasonic-sensor-controlled-robotic-arm.html</guid>
+    <description>The goal of this project was to demonstrate that by mounting the 4 Ping sensors to the gripper of the arm its motors could be controlled to direct the arm towards the closest target object (within 15cm in this case). Target objects could include one's hand or any flat surface measuring a minimum of 5cm by 5cm.</description>
+    <pubDate>Wed, 27 Jan 2016 17:23:30 +1000</pubDate>
+  </item>
+  <item>
       <title>Meet Bill And Ben</title>
       <link>http://blog.peterwallhead.com/meet-bill-ben.html</link>
       <guid isPermaLink="true">http://blog.peterwallhead.com/meet-bill-ben.html</guid>
