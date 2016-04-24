@@ -6,6 +6,13 @@
   <description>Web developing. Robot building. Real coding.</description>
   <atom:link href="http://blog.peterwallhead.com/rss.xml" rel="self" type="application/rss+xml" />
   <item>
+    <title>Flexible Robot Arm: Part 1 - Rapid Prototyping</title>
+    <link>http://blog.peterwallhead.com/flexible-robot-arm-part-1-rapid-prototyping.html</link>
+    <guid isPermaLink="true">http://blog.peterwallhead.com/flexible-robot-arm-part-1-rapid-prototyping.html</guid>
+    <description>After an extended holiday in Wellington, New Zealand, I'm getting back into making my mechanical creations. My next project is a flexible robot arm that will be able to operate in a inverted dome-shaped workspace.</description>
+    <pubDate>Sun, 24 Apr 2016 16:50:30 +1000</pubDate>
+  </item>
+  <item>
     <title>Human-robot Interaction: Ultrasonic Sensor Controlled Robotic Arm</title>
     <link>http://blog.peterwallhead.com/human-robot-interaction-ultrasonic-sensor-controlled-robotic-arm.html</link>
     <guid isPermaLink="true">http://blog.peterwallhead.com/human-robot-interaction-ultrasonic-sensor-controlled-robotic-arm.html</guid>
