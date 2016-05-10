@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Flexible Robot Arm: Part 2 - Mechanical Control - Peter Wallhead</title>
+	<meta name="description" content="I'm currently mechanising the prototype of my scaled up flexible robot arm (commonly called a spine robot)." />
+	<meta property="og:site_name" content="Peter Wallhead" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="http://blog.peterwallhead.com/flexible-robot-arm-part-2-mechanical-control.html" />
+	<meta property="og:title" content="Flexible Robot Arm: Part 2 - Mechanical Control" />
+	<meta property="og:description" content="I'm currently mechanising the prototype of my scaled up flexible robot arm (commonly called a spine robot)." />
+	<link rel="stylesheet" href="/assets/css/styles.css?v=201507302128">
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.6/styles/default.min.css">
+    <link href="/rss.xml" rel="alternate" type="application/rss+xml" title="Peter Wallhead's Blog" />
+	<script src="//cdn.jsdelivr.net/highlight.js/8.6/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-1617022-17', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+</head>
+
+<body>
+	<div id="site-head">
+        <div id="blog-title"><a href="http://blog.peterwallhead.com">Peter Wallhead</a></div>
+        <div id="blog-subtitle">Web developing. Robot building. Real coding.</div>
+    </div>
+	<div id="primary" class="content-area">
+		<div class="post">
+			<div class="post-header">
+                <div class="post-meta"><time datetime="2016-05-10">10 MAY 2016</time></div>
+				<h1 class="post-title">Flexible Robot Arm: Part 2 - Mechanical Control</h1>
+			</div>
+			<div class="post-content">
+                <p>I'm currently mechanising the prototype of my scaled up <a href="http://blog.peterwallhead.com/bionic-arm-part-1-rapid-prototyping.html" target="_blank">flexible robot arm</a> (commonly called a spine robot).</p>
+
+                <p>I began by using three motorised slide potentiometers as <a href="https://www.instagram.com/p/BEqJ0nqqEBv" target="_blank">pseudo linear actuators</a> to control the arm's tendon cables, but quickly found that even by maxing their motors out with a not-recommended 12V they did not provide enough torque. The arm's tendons need to be pulled/pushed at least 1-3cm to move the gripper end of the arm a substantial distance, and the motorised sliders were not cut out for the job.</p>
+
+                <p>I've moved onto using a home-made servo controlled 2-axis gimbal plate. Movement of the arm is achieved by tilting each axis in a coordinated way to lengthen and shorten each of the three tendon cables attached to its triangular top plate.</p>
+
+                <div class="gallery">
+                    <div class="single">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-version="6" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:50.0% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAGFBMVEUiIiI9PT0eHh4gIB4hIBkcHBwcHBwcHBydr+JQAAAACHRSTlMABA4YHyQsM5jtaMwAAADfSURBVDjL7ZVBEgMhCAQBAf//42xcNbpAqakcM0ftUmFAAIBE81IqBJdS3lS6zs3bIpB9WED3YYXFPmHRfT8sgyrCP1x8uEUxLMzNWElFOYCV6mHWWwMzdPEKHlhLw7NWJqkHc4uIZphavDzA2JPzUDsBZziNae2S6owH8xPmX8G7zzgKEOPUoYHvGz1TBCxMkd3kwNVbU0gKHkx+iZILf77IofhrY1nYFnB/lQPb79drWOyJVa/DAvg9B/rLB4cC+Nqgdz/TvBbBnr6GBReqn/nRmDgaQEej7WhonozjF+Y2I/fZou/qAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div> <p style=" margin:8px 0 0 0; padding:0 4px;"> <a href="https://www.instagram.com/p/BFNfOnWKELF/" style=" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;" target="_blank">#BionicArm 2-axis gimbal plate detail #maker #robot</a></p> <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">A photo posted by Peter Wallhead (@peterwallhead) on <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2016-05-10T02:56:13+00:00">May 9, 2016 at 7:56pm PDT</time></p></div></blockquote>
+                    <script async defer src="//platform.instagram.com/en_US/embeds.js"></script>
+                    </div>
+                </div>
+
+                <p>Not only do the servos generate more torque via the gimbal plate, they are also considerably easier to control by using the included Arduino servo class. As shown in my <a href="https://github.com/peterwallhead/arduino/blob/master/bionic_arm_gimbal/bionic_arm_gimbal.ino" target="_blank">example code</a>, I've written a basic function to map a set of predetermined x,y coordinates to degree positions on the servos. This means I can string multiple function calls together to generate more complex programs in the future.</p>
+
+                <p><strong>Here's a bonus video of the arm in running the example code</strong></p>
+
+                <div class="gallery">
+                    <div class="single">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-version="6" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:62.5% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAGFBMVEUiIiI9PT0eHh4gIB4hIBkcHBwcHBwcHBydr+JQAAAACHRSTlMABA4YHyQsM5jtaMwAAADfSURBVDjL7ZVBEgMhCAQBAf//42xcNbpAqakcM0ftUmFAAIBE81IqBJdS3lS6zs3bIpB9WED3YYXFPmHRfT8sgyrCP1x8uEUxLMzNWElFOYCV6mHWWwMzdPEKHlhLw7NWJqkHc4uIZphavDzA2JPzUDsBZziNae2S6owH8xPmX8G7zzgKEOPUoYHvGz1TBCxMkd3kwNVbU0gKHkx+iZILf77IofhrY1nYFnB/lQPb79drWOyJVa/DAvg9B/rLB4cC+Nqgdz/TvBbBnr6GBReqn/nRmDgaQEej7WhonozjF+Y2I/fZou/qAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div> <p style=" margin:8px 0 0 0; padding:0 4px;"> <a href="https://www.instagram.com/p/BFNdsn2qEIN/" style=" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;" target="_blank">#BionicArm in motion with its servo controlled 2-axis gimbal plate installed.</a></p> <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">A video posted by Peter Wallhead (@peterwallhead) on <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2016-05-10T02:42:50+00:00">May 9, 2016 at 7:42pm PDT</time></p></div></blockquote>
+                    <script async defer src="//platform.instagram.com/en_US/embeds.js"></script>
+                    </div>
+                </div>
+			</div>
+		</div>
+
+	</div>
+	<div id="footer">
+		<p>&copy; 2016 <a href="/">Peter Wallhead</a> | <a href="http://blog.peterwallhead.com/rss.xml">RSS feed</a> | <a href="https://twitter.com/peterwallhead">Twitter</a> | <a href="https://github.com/peterwallhead">GitHub</a> | <a href="http://au.linkedin.com/in/peterwallhead">LinkedIn</a></p>
+	</div>
+</body>
+</html>

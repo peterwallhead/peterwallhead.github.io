@@ -6,6 +6,13 @@
   <description>Web developing. Robot building. Real coding.</description>
   <atom:link href="http://blog.peterwallhead.com/rss.xml" rel="self" type="application/rss+xml" />
   <item>
+    <title>Flexible Robot Arm: Part 2 - Mechanical Control</title>
+    <link>http://blog.peterwallhead.com/bionic-arm-part-2-mechanical-control.html</link>
+    <guid isPermaLink="true">http://blog.peterwallhead.com/bionic-arm-part-2-mechanical-control.html</guid>
+    <description>I'm currently mechanising the prototype of my scaled up flexible robot arm (commonly called a spine robot).</description>
+    <pubDate>Tue, 10 May 2016 15:15:30 +1000</pubDate>
+  </item>
+  <item>
     <title>Flexible Robot Arm: Part 1 - Rapid Prototyping</title>
     <link>http://blog.peterwallhead.com/bionic-arm-part-1-rapid-prototyping.html</link>
     <guid isPermaLink="true">http://blog.peterwallhead.com/bionic-arm-part-1-rapid-prototyping.html</guid>
