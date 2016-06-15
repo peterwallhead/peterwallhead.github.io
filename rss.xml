@@ -6,6 +6,13 @@
   <description>Web developing. Robot building. Real coding.</description>
   <atom:link href="http://blog.peterwallhead.com/rss.xml" rel="self" type="application/rss+xml" />
   <item>
+    <title>Adventures With Python: Part 1 - Flask App Controlling A Robot Arm</title>
+    <link>http://blog.peterwallhead.com/python-flask-app-controlling-robot-arm.html</link>
+    <guid isPermaLink="true">http://blog.peterwallhead.com/python-flask-app-controlling-robot-arm.html</guid>
+    <description>This is the result of a small mechatronics project I've working on for a few weeks to help broaden my software development skills.</description>
+    <pubDate>Wed, 15 June 2016 17:20:30 +1000</pubDate>
+  </item>
+  <item>
     <title>Flexible Robot Arm: Part 2 - Mechanical Control</title>
     <link>http://blog.peterwallhead.com/bionic-arm-part-2-mechanical-control.html</link>
     <guid isPermaLink="true">http://blog.peterwallhead.com/bionic-arm-part-2-mechanical-control.html</guid>

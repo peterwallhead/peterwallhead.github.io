@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Adventures With Python: Part 1 - Flask App Controlling A Robot Arm - Peter Wallhead</title>
+	<meta name="description" content="This is the result of a small mechatronics project I've working on for a few weeks to help broaden my software development skills." />
+	<meta property="og:site_name" content="Peter Wallhead" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="http://blog.peterwallhead.com/python-flask-app-controlling-robot-arm.html" />
+	<meta property="og:title" content="Adventures With Python: Part 1 - Flask App Controlling A Robot Arm" />
+	<meta property="og:description" content="This is the result of a small mechatronics project I've working on for a few weeks to help broaden my software development skills." />
+	<link rel="stylesheet" href="/assets/css/styles.css?v=201507302128">
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.6/styles/default.min.css">
+    <link href="/rss.xml" rel="alternate" type="application/rss+xml" title="Peter Wallhead's Blog" />
+	<script src="//cdn.jsdelivr.net/highlight.js/8.6/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-1617022-17', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+</head>
+
+<body>
+	<div id="site-head">
+        <div id="blog-title"><a href="http://blog.peterwallhead.com">Peter Wallhead</a></div>
+        <div id="blog-subtitle">Real-world software development.</div>
+    </div>
+	<div id="primary" class="content-area">
+		<div class="post">
+			<div class="post-header">
+                <div class="post-meta"><time datetime="2016-06-15">15 JUNE 2016</time></div>
+				<h1 class="post-title">Adventures With Python: Part 1 - Flask App Controlling A Robot Arm</h1>
+			</div>
+			<div class="post-content">
+                <p>This is the result of a small mechatronics project I've working on for a few weeks to help broaden my software development skills.</p>
+                <p>It consists of 4 main components; a Python Flask app, a Raspberry Pi, an Arduino Uno, and an off the shelf robot arm.</p>
+                <p>The Flask app runs on the RPi and uses the GPIO pins to send HIGH/LOW values to the Arduino. The Arduino then outputs a corresponding HIGH/LOW value to the appropriate channel on the attached relay board. Each relay channel controls a different motor direction on the robot arm and to simplify things the relays are connected to the existing arm remote switches.</p>
+                <p>As shown in the video below, I've connected my laptop to the RPi via a shared network connection so I can demonstrate the project more easily.</p>
+                <div class="gallery">
+                    <div class="single">
+                        <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-version="7" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:50.0% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div> <p style=" margin:8px 0 0 0; padding:0 4px;"> <a href="https://www.instagram.com/p/BGop2jUKEPH/" style=" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;" target="_blank">Python Flask app running on a #raspberrypi controlling a #robot arm via an #arduino and relay board.</a></p> <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">A video posted by Peter Wallhead (@peterwallhead) on <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2016-06-14T12:39:57+00:00">Jun 14, 2016 at 5:39am PDT</time></p></div></blockquote>
+                        <script async defer src="//platform.instagram.com/en_US/embeds.js"></script>
+                    </div>
+                </div>
+                <p>Both the <a href="https://github.com/peterwallhead/relay-controller-4-channel" target="_blank">Arduino code</a> and the <a href="https://github.com/peterwallhead/robot-arm-controller" target="_blank">Flask app code</a> are available on <a href="https://github.com/peterwallhead/" target="_blank">my GitHub.</a></p>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<p>&copy; 2016 <a href="/">Peter Wallhead</a> | <a href="http://blog.peterwallhead.com/rss.xml">RSS feed</a> | <a href="https://twitter.com/peterwallhead">Twitter</a> | <a href="https://github.com/peterwallhead">GitHub</a> | <a href="http://au.linkedin.com/in/peterwallhead">LinkedIn</a></p>
+	</div>
+</body>
+</html>
